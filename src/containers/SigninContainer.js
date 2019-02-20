@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { getUserToken } from "../actions";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import produce from "immer";
 import SigninView from "../components/SigninView";
 
@@ -23,10 +26,27 @@ class SigninContainer extends Component {
   };
 
   render() {
+    const { getUserToken } = this.props;
     return (
-      <SigninView {...this.state} onInputChange={this.handleInputChange} />
+      <SigninView
+        {...this.state}
+        getUserToken={getUserToken}
+        onInputChange={this.handleInputChange}
+      />
     );
   }
 }
 
-export default SigninContainer;
+const mapDispathToProps = dispatch => {
+  return bindActionCreators(
+    {
+      getUserToken
+    },
+    dispatch
+  );
+};
+
+export default connect(
+  null,
+  mapDispathToProps
+)(SigninContainer);

@@ -28,7 +28,13 @@ const LoginForm = props => {
           <Header as="h2" color="teal" textAlign="center">
             Log-in to your account
           </Header>
-          <Form size="large">
+          <Form
+            size="large"
+            onSubmit={e => {
+              e.preventDefault();
+              props.getUserToken();
+            }}
+          >
             <Segment stacked>
               <Form.Input
                 fluid
