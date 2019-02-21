@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getUserToken } from "../actions";
+import { getUserToken, createUserToken } from "../actions";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import produce from "immer";
@@ -25,12 +25,19 @@ class SigninContainer extends Component {
     );
   };
 
+  handleFormSubmit = async e => {
+    const { username, password } = this.state;
+    const { createUserToken } = this.props;
+    e.preventDefault();
+
+    await createUserToken(username, password);
+  };
+
   render() {
-    const { getUserToken } = this.props;
     return (
       <SigninView
         {...this.state}
-        getUserToken={getUserToken}
+        onFormSubmit={this.handleFormSubmit}
         onInputChange={this.handleInputChange}
       />
     );
@@ -38,12 +45,7 @@ class SigninContainer extends Component {
 }
 
 const mapDispathToProps = dispatch => {
-  return bindActionCreators(
-    {
-      getUserToken
-    },
-    dispatch
-  );
+  return bindActionCreators({ createUserToken }, dispatch);
 };
 
 export default connect(

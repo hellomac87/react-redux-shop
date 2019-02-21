@@ -32,7 +32,7 @@ const LoginForm = props => {
             size="large"
             onSubmit={e => {
               e.preventDefault();
-              props.getUserToken();
+              props.onFormSubmit(e);
             }}
           >
             <Segment stacked>
