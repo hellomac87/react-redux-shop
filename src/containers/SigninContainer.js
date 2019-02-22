@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { createUserToken } from "../actions/auth_action";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -26,11 +27,15 @@ class SigninContainer extends Component {
   };
 
   handleFormSubmit = async e => {
+    const { history } = this.props;
     const { username, password } = this.state;
     const { createUserToken } = this.props;
     e.preventDefault();
 
-    await createUserToken(username, password);
+    try {
+      await createUserToken(username, password);
+      history.push("/");
+    } catch (e) {}
   };
 
   render() {
@@ -56,7 +61,9 @@ const mapDispathToProps = dispatch => {
   return bindActionCreators({ createUserToken }, dispatch);
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispathToProps
-)(SigninContainer);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispathToProps
+  )(SigninContainer)
+);
