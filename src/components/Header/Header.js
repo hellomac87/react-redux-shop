@@ -1,27 +1,43 @@
 import React, { Component } from "react";
-import { Menu } from "semantic-ui-react";
+import { Menu, Container } from "semantic-ui-react";
 
 class Header extends Component {
   state = { activeItem: "home" };
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  handleItemClick = path => {
+    const { history } = this.props;
+    history.push(path);
+  };
 
   render() {
-    const { activeItem } = this.state;
+    const { user } = this.props;
 
     return (
       <header>
-        <Menu inverted>
-          <Menu.Item
-            name="home"
-            active={activeItem === "home"}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name="signin"
-            active={activeItem === "messages"}
-            onClick={this.handleItemClick}
-          />
+        <Menu fixed="top" inverted>
+          <Container>
+            <Menu.Item
+              onClick={() => this.handleItemClick("/")}
+              name="home"
+              as="a"
+            />
+            <Menu.Item
+              onClick={() => this.handleItemClick("/auth/signin")}
+              name="store"
+              as="a"
+            />
+            <Menu.Item
+              onClick={() => this.handleItemClick("/")}
+              name="account"
+              as="a"
+            />
+            <Menu.Item name={`user: ${user.username}`} />
+            {user.username ? (
+              <Menu.Item name="logout" />
+            ) : (
+              <Menu.Item name="signin" />
+            )}
+          </Container>
         </Menu>
       </header>
     );

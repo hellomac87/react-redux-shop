@@ -27,8 +27,10 @@ class SigninContainer extends Component {
   };
 
   handleFormSubmit = async e => {
-    const { history } = this.props;
     const { username, password } = this.state;
+    // props from withRouter
+    const { history } = this.props;
+    // props from action
     const { createUserToken } = this.props;
     e.preventDefault();
 
