@@ -57,7 +57,7 @@ const LoginForm = props => {
               />
 
               <Button color="teal" fluid size="large">
-                Login
+                {props.loading.state ? "fetching..." : "Login"}
               </Button>
             </Segment>
           </Form>

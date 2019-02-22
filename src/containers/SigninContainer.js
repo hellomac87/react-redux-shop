@@ -34,21 +34,29 @@ class SigninContainer extends Component {
   };
 
   render() {
+    // from reducer
+    const { loading } = this.props;
     return (
       <SigninView
         {...this.state}
+        loading={loading}
         onFormSubmit={this.handleFormSubmit}
         onInputChange={this.handleInputChange}
       />
     );
   }
 }
+const mapStateToProps = (state, ownProps) => {
+  return {
+    loading: state.loading
+  };
+};
 
 const mapDispathToProps = dispatch => {
   return bindActionCreators({ createUserToken }, dispatch);
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispathToProps
 )(SigninContainer);

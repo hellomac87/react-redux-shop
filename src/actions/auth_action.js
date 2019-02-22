@@ -1,5 +1,6 @@
 import api from "../api/api";
 import { SET_USER } from "../reducers/auth_reducer";
+import { loadingStart, loadingEnd } from "./loading_action";
 
 // thunk actions
 export const createUserToken = (username, password) => async dispatch => {
@@ -20,6 +21,7 @@ export const createUserToken = (username, password) => async dispatch => {
 };
 
 export const getUser = () => async dispatch => {
+  dispatch(loadingStart());
   try {
     // 1. call API
     const res = await api.get("/me");
@@ -32,6 +34,7 @@ export const getUser = () => async dispatch => {
 
     // 2. dispatch action
     dispatch(setUser(id, username));
+    dispatch(loadingEnd());
   } catch (e) {
     // 1. logging error
     console.log(e);
