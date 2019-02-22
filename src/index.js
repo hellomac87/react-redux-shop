@@ -5,12 +5,14 @@ import "./statics/styles/index.scss";
 import App from "./components/App";
 
 import { createStore, applyMiddleware, compose } from "redux";
+
+import logger from "redux-logger";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import rootReducer from "./reducers";
 import * as serviceWorker from "./serviceWorker";
 
-const middleWares = [thunk];
+const middleWares = [logger, thunk];
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

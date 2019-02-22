@@ -1,13 +1,17 @@
-export const GET_USER_TOKEN = "GET_USER_TOKEN";
-export const CREATE_USER_TOKEN = "REGISTER_USER";
+import produce from "immer";
 
-export const token = (state = "asdf", action) => {
-  switch (action.type) {
-    case GET_USER_TOKEN:
-      return "asdf";
-    case CREATE_USER_TOKEN:
-      console.log("CREATE_USER_TOKEN");
-    default:
-      return state;
-  }
+export const SET_USER = "SET_USER";
+
+const userInitialState = {
+  username: null,
+  id: null
 };
+
+export const user = (state = userInitialState, action) =>
+  produce(state, draft => {
+    switch (action.type) {
+      case SET_USER:
+        draft.username = action.username;
+        draft.id = action.id;
+    }
+  });

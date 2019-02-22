@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getUserToken, createUserToken } from "../actions";
+import { createUserToken } from "../actions/auth_action";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import produce from "immer";
