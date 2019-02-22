@@ -1,5 +1,5 @@
 import api from "../api/api";
-import { SET_USER } from "../reducers/auth_reducer";
+import { SET_USER, DESTROY_USER } from "../reducers/auth_reducer";
 import { loadingStart, loadingEnd } from "./loading_action";
 
 // thunk actions
@@ -49,6 +49,15 @@ export const setUser = (id, username) => {
     type: SET_USER,
     id,
     username
+  };
+};
+
+export const destroyUser = () => {
+  localStorage.removeItem("token");
+  return {
+    type: DESTROY_USER,
+    id: null,
+    username: null
   };
 };
 

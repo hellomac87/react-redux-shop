@@ -10,7 +10,7 @@ class Header extends Component {
   };
 
   render() {
-    const { user } = this.props;
+    const { user, destroyUser } = this.props;
 
     return (
       <header>
@@ -21,21 +21,21 @@ class Header extends Component {
               name="home"
               as="a"
             />
-            <Menu.Item
-              onClick={() => this.handleItemClick("/auth/signin")}
-              name="store"
-              as="a"
-            />
+            <Menu.Item name="store" as="a" />
             <Menu.Item
               onClick={() => this.handleItemClick("/")}
               name="account"
               as="a"
             />
-            <Menu.Item name={`user: ${user.username}`} />
+            {user.username && <Menu.Item name={`user: ${user.username}`} />}
+
             {user.username ? (
-              <Menu.Item name="logout" />
+              <Menu.Item onClick={() => destroyUser()} name="logout" />
             ) : (
-              <Menu.Item name="signin" />
+              <Menu.Item
+                onClick={() => this.handleItemClick("/auth/signin")}
+                name="signin"
+              />
             )}
           </Container>
         </Menu>
