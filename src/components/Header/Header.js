@@ -3,7 +3,7 @@ import { Menu, Container, Dropdown } from "semantic-ui-react";
 
 class Header extends Component {
   render() {
-    const { user, destroyUser, linkTo } = this.props;
+    const { user, onLogout, linkTo } = this.props;
 
     return (
       <header>
@@ -30,7 +30,7 @@ class Header extends Component {
               {user.username && <Menu.Item name={`user: ${user.username}`} />}
 
               {user.username ? (
-                <Menu.Item onClick={() => destroyUser()} name="logout" />
+                <Menu.Item onClick={() => onLogout()} name="logout" />
               ) : (
                 <React.Fragment>
                   <Menu.Item

@@ -6,18 +6,31 @@ import { connect } from "react-redux";
 import Header from "../components/Header";
 
 class HeaderContainer extends Component {
-  linkTo = path => {
+  handleRouting = path => {
     // props from withRouter
     const { history } = this.props;
     history.push(path);
   };
 
+  handleLogout = async () => {
+    // props from withRouter
+    const { history } = this.props;
+    // props from action
+    const { destroyUser } = this.props;
+    await destroyUser();
+    history.push("/auth/signin");
+  };
+
   render() {
     // props from redux state
-    const { user, destroyUser } = this.props;
+    const { user } = this.props;
 
     return (
-      <Header user={user} linkTo={this.linkTo} destroyUser={destroyUser} />
+      <Header
+        user={user}
+        linkTo={this.handleRouting}
+        onLogout={this.handleLogout}
+      />
     );
   }
 }
