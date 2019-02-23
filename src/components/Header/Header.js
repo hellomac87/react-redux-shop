@@ -1,52 +1,49 @@
 import React, { Component } from "react";
-import { Menu, Container } from "semantic-ui-react";
+import { Menu, Container, Dropdown } from "semantic-ui-react";
 
 class Header extends Component {
-  state = { activeItem: "home" };
-
-  handleItemClick = path => {
-    const { history } = this.props;
-    history.push(path);
-  };
-
   render() {
-    const { user, destroyUser } = this.props;
+    const { user, destroyUser, linkTo } = this.props;
 
     return (
       <header>
         <Menu fixed="top" inverted>
           <Container>
-            <Menu.Item
-              onClick={() => this.handleItemClick("/")}
-              name="home"
-              as="a"
-            />
-            <Menu.Item
-              onClick={() => this.handleItemClick("/auth/signin")}
-              name="store"
-              as="a"
-            />
-            <Menu.Item
-              onClick={() => this.handleItemClick("/")}
-              name="account"
-              as="a"
-            />
-            {user.username && <Menu.Item name={`user: ${user.username}`} />}
+            <Menu.Item onClick={() => linkTo("/")} name="home" as="a" />
+            <Dropdown text="Store" pointing className="link item">
+              <Dropdown.Menu>
+                <Dropdown.Header>Categories</Dropdown.Header>
+                <Dropdown.Item>iphone</Dropdown.Item>
+                <Dropdown.Item>macbook air</Dropdown.Item>
+                <Dropdown.Item>macbook pro</Dropdown.Item>
+                <Dropdown.Item>imac</Dropdown.Item>
+                <Dropdown.Item>imac pro</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
 
-            {user.username ? (
-              <Menu.Item onClick={() => destroyUser()} name="logout" />
-            ) : (
-              <React.Fragment>
-                <Menu.Item
-                  onClick={() => this.handleItemClick("/auth/signin")}
-                  name="signin"
-                />
-                <Menu.Item
-                  onClick={() => this.handleItemClick("/auth/signup")}
-                  name="signup"
-                />
-              </React.Fragment>
-            )}
+            <Menu.Menu position="right">
+              <Menu.Item
+                onClick={() => linkTo("/account")}
+                name="Account"
+                as="a"
+              />
+              {user.username && <Menu.Item name={`user: ${user.username}`} />}
+
+              {user.username ? (
+                <Menu.Item onClick={() => destroyUser()} name="logout" />
+              ) : (
+                <React.Fragment>
+                  <Menu.Item
+                    onClick={() => linkTo("/auth/signin")}
+                    name="signin"
+                  />
+                  <Menu.Item
+                    onClick={() => linkTo("/auth/signup")}
+                    name="signup"
+                  />
+                </React.Fragment>
+              )}
+            </Menu.Menu>
           </Container>
         </Menu>
       </header>

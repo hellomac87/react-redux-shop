@@ -6,12 +6,19 @@ import { connect } from "react-redux";
 import Header from "../components/Header";
 
 class HeaderContainer extends Component {
+  linkTo = path => {
+    // props from withRouter
+    const { history } = this.props;
+    history.push(path);
+  };
+
   render() {
     // props from redux state
     const { user, destroyUser } = this.props;
-    // props from withRouter
-    const { history } = this.props;
-    return <Header user={user} history={history} destroyUser={destroyUser} />;
+
+    return (
+      <Header user={user} linkTo={this.linkTo} destroyUser={destroyUser} />
+    );
   }
 }
 
