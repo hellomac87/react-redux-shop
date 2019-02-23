@@ -21,7 +21,11 @@ class Header extends Component {
               name="home"
               as="a"
             />
-            <Menu.Item name="store" as="a" />
+            <Menu.Item
+              onClick={() => this.handleItemClick("/auth/signin")}
+              name="store"
+              as="a"
+            />
             <Menu.Item
               onClick={() => this.handleItemClick("/")}
               name="account"

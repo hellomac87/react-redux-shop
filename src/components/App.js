@@ -8,7 +8,7 @@ import SigninPage from "../pages/SigninPage";
 
 class App extends Component {
   componentDidMount() {
-    this.refreshUser();
+    // this.refreshUser();
   }
 
   refreshUser = () => {
