@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import produce from "immer";
 import SignFormView from "../components/SignFormView";
 
-class SigninContainer extends Component {
+class SignupContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -25,35 +25,34 @@ class SigninContainer extends Component {
       })
     );
   };
-
   handleFormSubmit = async e => {
     const { username, password } = this.state;
     // props from withRouter
     const { history } = this.props;
     // props from action
-    const { createUserToken } = this.props;
+    // const { createUserToken } = this.props;
     e.preventDefault();
 
-    try {
-      await createUserToken(username, password);
-      history.push("/");
-    } catch (e) {}
+    // try {
+    //   await createUserToken(username, password);
+    //   history.push("/");
+    // } catch (e) {}
   };
 
   render() {
-    // from reducer
     const { loading } = this.props;
     return (
       <SignFormView
-        type="signin"
+        type="signup"
         {...this.state}
         loading={loading}
-        onFormSubmit={this.handleFormSubmit}
+        // onFormSubmit={this.handleFormSubmit}
         onInputChange={this.handleInputChange}
       />
     );
   }
 }
+
 const mapStateToProps = (state, ownProps) => {
   return {
     loading: state.loading
@@ -68,5 +67,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispathToProps
-  )(SigninContainer)
+  )(SignupContainer)
 );

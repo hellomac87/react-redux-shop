@@ -9,7 +9,6 @@ import {
 } from "semantic-ui-react";
 
 const LoginForm = props => {
-  console.log(props);
   return (
     <div className="login-form">
       <style>{`
@@ -26,7 +25,11 @@ const LoginForm = props => {
       >
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as="h2" color="teal" textAlign="center">
-            Log-in to your account
+            {props.type === "signin"
+              ? "Login"
+              : props.type === "signup"
+              ? "Join"
+              : null}
           </Header>
           <Form
             size="large"
@@ -57,13 +60,14 @@ const LoginForm = props => {
               />
 
               <Button color="teal" fluid size="large">
-                {props.loading.state ? "fetching..." : "Login"}
+                {props.type === "signin"
+                  ? "Login"
+                  : props.type === "signup"
+                  ? "Join"
+                  : null}
               </Button>
             </Segment>
           </Form>
-          <Message>
-            New to us? <a href="#">Sign Up</a>
-          </Message>
         </Grid.Column>
       </Grid>
     </div>

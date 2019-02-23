@@ -36,10 +36,16 @@ class Header extends Component {
             {user.username ? (
               <Menu.Item onClick={() => destroyUser()} name="logout" />
             ) : (
-              <Menu.Item
-                onClick={() => this.handleItemClick("/auth/signin")}
-                name="signin"
-              />
+              <React.Fragment>
+                <Menu.Item
+                  onClick={() => this.handleItemClick("/auth/signin")}
+                  name="signin"
+                />
+                <Menu.Item
+                  onClick={() => this.handleItemClick("/auth/signup")}
+                  name="signup"
+                />
+              </React.Fragment>
             )}
           </Container>
         </Menu>
