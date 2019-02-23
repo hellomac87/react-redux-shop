@@ -1,7 +1,12 @@
 import React from "react";
+import ProductListView from "../ProductListView";
 
 const MainView = () => {
-  return <div style={{ marginTop: "40px" }}>MainView</div>;
+  return (
+    <div>
+      <ProductListView />
+    </div>
+  );
 };
 
 export default MainView;

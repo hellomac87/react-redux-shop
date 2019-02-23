@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
   return (
     <React.Fragment>
       <HeaderContainer />
-      {children}
+      <div style={{ marginTop: "40px", padding: "10px 0" }}>{children}</div>
       <Footer />
     </React.Fragment>
   );
