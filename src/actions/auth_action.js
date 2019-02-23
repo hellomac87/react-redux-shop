@@ -3,21 +3,39 @@ import { SET_USER, DESTROY_USER } from "../reducers/auth_reducer";
 import { loadingStart, loadingEnd } from "./loading_action";
 
 // thunk actions
+export const createUser = (username, password) => async dispatch => {
+  try {
+    // 1. call API
+    const res = await api.post("/users/register", {
+      username,
+      password
+    });
+
+    // 2. success action dispatch
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const createUserToken = (username, password) => async dispatch => {
-  // 1. call API
-  const res = await api.post("/users/login", {
-    username,
-    password
-  });
-  const { token } = res.data;
-  // 1-1. console
-  console.log("createUserToken", res);
+  try {
+    // 1. call API
+    const res = await api.post("/users/login", {
+      username,
+      password
+    });
+    const { token } = res.data;
+    // 1-1. console
+    console.log("createUserToken", res);
 
-  // 2. save token data at localStorage
-  localStorage.setItem("token", token);
+    // 2. save token data at localStorage
+    localStorage.setItem("token", token);
 
-  // 3. dispatch action
-  dispatch(getUser());
+    // 3. dispatch action
+    dispatch(getUser());
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const getUser = () => async dispatch => {

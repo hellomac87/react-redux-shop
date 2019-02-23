@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { createUserToken } from "../actions/auth_action";
+import { createUser } from "../actions/auth_action";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import produce from "immer";
@@ -30,13 +30,14 @@ class SignupContainer extends Component {
     // props from withRouter
     const { history } = this.props;
     // props from action
-    // const { createUserToken } = this.props;
+    const { createUser } = this.props;
     e.preventDefault();
 
-    // try {
-    //   await createUserToken(username, password);
-    //   history.push("/");
-    // } catch (e) {}
+    try {
+      await createUser(username, password);
+      alert("회원가입에 성공했습니다. 로그인 후 서비스를 이용 해 주세요.");
+      history.push("/auth/signin");
+    } catch (e) {}
   };
 
   render() {
@@ -46,7 +47,7 @@ class SignupContainer extends Component {
         type="signup"
         {...this.state}
         loading={loading}
-        // onFormSubmit={this.handleFormSubmit}
+        onFormSubmit={this.handleFormSubmit}
         onInputChange={this.handleInputChange}
       />
     );
@@ -60,7 +61,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispathToProps = dispatch => {
-  return bindActionCreators({ createUserToken }, dispatch);
+  return bindActionCreators({ createUser }, dispatch);
 };
 
 export default withRouter(
