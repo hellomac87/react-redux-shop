@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import MainView from "../components/MainView/MainView";
 import Layout from "../components/Layout/Layout";
+import MainContainer from "../containers/MainContainer";
 
 class MainPage extends Component {
   render() {
     return (
       <Layout>
-        <MainView />
+        <MainContainer />
       </Layout>
     );
   }

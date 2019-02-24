@@ -1,10 +1,10 @@
 import React from "react";
 import ProductListView from "../ProductListView";
 
-const MainView = () => {
+const MainView = ({ product }) => {
   return (
     <div>
-      <ProductListView />
+      <ProductListView product={product} />
     </div>
   );
 };
