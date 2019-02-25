@@ -13,36 +13,9 @@ import LoadingSpinner from "../components/LoadingSpinner";
 
 class MainContainer extends Component {
   async componentDidMount() {
-    // props from router
-    const {
-      match: {
-        params: { category }
-      }
-    } = this.props;
     // props from action
     const { getProduct } = this.props;
-    await getProduct(category);
-  }
-
-  async componentDidUpdate(prevProps) {
-    // props from router
-    const {
-      match: {
-        params: { category: prevCategory }
-      }
-    } = prevProps;
-    // props from router
-    const {
-      match: {
-        params: { category }
-      }
-    } = this.props;
-    // props from action
-    const { getProduct } = this.props;
-
-    if (category !== prevCategory) {
-      await getProduct(category);
-    }
+    await getProduct();
   }
 
   render() {
