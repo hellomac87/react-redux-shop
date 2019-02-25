@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { getProduct } from "../actions/product_action";
 
 import MainView from "../components/MainView/MainView";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 class MainContainer extends Component {
   async componentDidMount() {
@@ -47,7 +48,7 @@ class MainContainer extends Component {
   render() {
     const { product, loading } = this.props;
     if (loading) {
-      return <p>...loading</p>;
+      return <LoadingSpinner />;
     }
     return <MainView product={product} />;
   }
