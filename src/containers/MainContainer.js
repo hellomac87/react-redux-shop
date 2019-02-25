@@ -56,7 +56,7 @@ class MainContainer extends Component {
 const mapStateToProps = state => {
   return {
     product: state.product,
-    loading: state.loading.state
+    loading: state.loading
   };
 };
 

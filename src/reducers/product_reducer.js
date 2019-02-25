@@ -17,5 +17,8 @@ export const product = (state = userInitialState, action) =>
             item => item.category === action.category
           );
         });
+        break;
+      default:
+        return state;
     }
   });

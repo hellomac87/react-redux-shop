@@ -1,23 +1,9 @@
 import React from "react";
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Message,
-  Segment
-} from "semantic-ui-react";
+import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
 
 const LoginForm = props => {
   return (
     <div className="login-form">
-      <style>{`
-              body > div,
-              body > div > div,
-              body > div > div > div.login-form {
-                height: 100%;
-              }
-            `}</style>
       <Grid
         textAlign="center"
         style={{ height: "100%" }}

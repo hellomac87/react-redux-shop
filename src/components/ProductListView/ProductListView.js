@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Item, Image } from "semantic-ui-react";
+import { Container, Item } from "semantic-ui-react";
 
 const ProductListView = ({ product }) => {
   return (

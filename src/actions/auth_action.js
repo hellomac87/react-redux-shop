@@ -6,7 +6,8 @@ import { loadingStart, loadingEnd } from "./loading_action";
 export const createUser = (username, password) => async dispatch => {
   try {
     // 1. call API
-    const res = await api.post("/users/register", {
+    // const res = await api.post("/users/register", {
+    await api.post("/users/register", {
       username,
       password
     });
@@ -80,9 +81,9 @@ export const destroyUser = () => {
 };
 
 // TODO: dispatch error action
-const setUserSuccess = () => {
-  return {};
-};
-const setUserFailure = () => {
-  return {};
-};
+// const setUserSuccess = () => {
+//   return {};
+// };
+// const setUserFailure = () => {
+//   return {};
+// };

@@ -15,5 +15,8 @@ export const user = (state = userInitialState, action) =>
       case DESTROY_USER:
         draft.username = action.username;
         draft.id = action.id;
+        break;
+      default:
+        return state;
     }
   });
