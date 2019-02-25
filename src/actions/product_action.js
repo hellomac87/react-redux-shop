@@ -15,10 +15,10 @@ export const getProduct = (category, page, limit) => async disaptch => {
     // 1. call api
     const res = await api.get("/products", { params });
     const payload = res.data;
-    const total_count = res.headers["x-total-count"];
+    // const total_count = res.headers["x-total-count"];
 
     // 2. dispatch setProduct action
-    disaptch(setProduct(payload, category, total_count));
+    disaptch(setProduct(payload, category));
   } catch (e) {
     // Error
     console.log(e);
@@ -32,7 +32,6 @@ const setProduct = (payload, category, total_count) => {
   return {
     type: SET_PRODUCT,
     payload,
-    category,
-    total_count
+    category
   };
 };

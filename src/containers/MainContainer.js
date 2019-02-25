@@ -36,12 +36,11 @@ class MainContainer extends Component {
   }
 
   render() {
-    const { product, total_count, loading } = this.props;
-    console.log(total_count);
+    const { product, loading } = this.props;
     if (loading) {
       return <LoadingSpinner />;
     }
-    return <MainView product={product} total_count={total_count} />;
+    return <MainView product={product} />;
   }
 }
 
