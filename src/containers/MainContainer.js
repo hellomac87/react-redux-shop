@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+// react-router-dom
+import { withRouter } from "react-router-dom";
 // redux
 import { bindActionCreators } from "redux";
 // react-redux
@@ -10,19 +12,51 @@ import MainView from "../components/MainView/MainView";
 
 class MainContainer extends Component {
   async componentDidMount() {
-    console.log("main container");
+    // props from router
+    const {
+      match: {
+        params: { category }
+      }
+    } = this.props;
+    // props from action
     const { getProduct } = this.props;
-    await getProduct();
+    await getProduct(category);
   }
+
+  async componentDidUpdate(prevProps) {
+    // props from router
+    const {
+      match: {
+        params: { category: prevCategory }
+      }
+    } = prevProps;
+    // props from router
+    const {
+      match: {
+        params: { category }
+      }
+    } = this.props;
+    // props from action
+    const { getProduct } = this.props;
+
+    if (category !== prevCategory) {
+      await getProduct(category);
+    }
+  }
+
   render() {
-    const { product } = this.props;
+    const { product, loading } = this.props;
+    if (loading) {
+      return <p>...loading</p>;
+    }
     return <MainView product={product} />;
   }
 }
 
 const mapStateToProps = state => {
   return {
-    product: state.product
+    product: state.product,
+    loading: state.loading.state
   };
 };
 
@@ -35,7 +69,9 @@ const mapDispatchToProps = dispatch => {
   );
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MainContainer);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(MainContainer)
+);

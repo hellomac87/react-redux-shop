@@ -13,11 +13,18 @@ class Header extends Component {
             <Dropdown text="Store" pointing className="link item">
               <Dropdown.Menu>
                 <Dropdown.Header>Categories</Dropdown.Header>
-                <Dropdown.Item>iphone</Dropdown.Item>
-                <Dropdown.Item>macbook air</Dropdown.Item>
-                <Dropdown.Item>macbook pro</Dropdown.Item>
-                <Dropdown.Item>imac</Dropdown.Item>
-                <Dropdown.Item>imac pro</Dropdown.Item>
+                <Dropdown.Item onClick={() => linkTo("/store/iphone")}>
+                  iphone
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => linkTo("/store/macbook")}>
+                  macbook
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => linkTo("/store/imac")}>
+                  imac
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => linkTo("/store/watch")}>
+                  apple watch
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
 
