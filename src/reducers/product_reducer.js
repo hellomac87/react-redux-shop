@@ -4,6 +4,7 @@ export const SET_PRODUCT = "SET_PRODUCT";
 
 const userInitialState = {
   byId: [],
+  total_count: null,
   byFilter: []
 };
 
@@ -16,6 +17,7 @@ export const product = (state = userInitialState, action) =>
           draft.byFilter = action.payload.filter(
             item => item.category === action.category
           );
+          draft.total_count = action.total_count;
         });
         break;
       default:
