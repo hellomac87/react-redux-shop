@@ -3,9 +3,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { getUser } from "../actions/auth_action";
+// pages
 import MainPage from "../pages/MainPage";
 import SigninPage from "../pages/SigninPage";
 import SignupPage from "../pages/SignupPage";
+import StorePage from "../pages/StorePage";
 
 class App extends Component {
   componentDidMount() {
@@ -25,7 +27,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={MainPage} />
-          <Route exact path="/store/:category" component={MainPage} />
+          <Route exact path="/store/:category" component={StorePage} />
           <Route path="/auth/signin" component={SigninPage} />
           <Route path="/auth/signup" component={SignupPage} />
         </Switch>
