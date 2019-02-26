@@ -11,16 +11,24 @@ const createList = category => {
     switch (action.type) {
       case "FETCH_PRODUCTS_SUCCESS":
         // 액션의 products 에서 아이디만 쏙쏙 뽑아서 배열을 만들었어요.
-        return action.products.map(product => product.id);
+        return action.response.map(product => product.id);
       default:
         return state;
     }
   };
 
-  // const
+  const totalCount = (state = 0, action) => {
+    switch (action.type) {
+      case "FETCH_PRODUCTS_SUCCESS":
+        return action.totalCount;
+      default:
+        return state;
+    }
+  };
 
   return combineReducers({
-    ids
+    ids,
+    totalCount
   });
 };
 
@@ -29,3 +37,4 @@ export default createList;
 
 // selectors
 export const getIds = state => state.ids;
+export const getTotalCount = state => state.totalCount;

@@ -19,7 +19,7 @@ class MainContainer extends Component {
       pageOption: {
         category: null,
         page: 1,
-        pageLimit: 5
+        pageLimit: null
       }
     };
   }
@@ -28,6 +28,7 @@ class MainContainer extends Component {
     const { pageOption } = this.state;
     // props from action
     const { getProduct } = this.props;
+
     await getProduct(
       pageOption.category,
       pageOption.page,

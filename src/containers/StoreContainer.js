@@ -7,6 +7,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 // action
 import { getProduct } from "../actions/product_action";
+import { fetchProducts } from "../actions/products_action";
 
 import ProductListView from "../components/ProductListView";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -20,8 +21,9 @@ class StoreContainer extends Component {
       }
     } = this.props;
     // props from action
-    const { getProduct } = this.props;
+    const { getProduct, fetchProducts } = this.props;
     await getProduct(category);
+    // await fetchProducts(category);
   }
 
   async componentDidUpdate(prevProps) {
@@ -38,10 +40,11 @@ class StoreContainer extends Component {
       }
     } = this.props;
     // props from action
-    const { getProduct } = this.props;
+    const { getProduct, fetchProducts } = this.props;
 
     if (category !== prevCategory) {
       await getProduct(category);
+      // await fetchProducts(category);
     }
   }
 
@@ -64,7 +67,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      getProduct
+      getProduct,
+      fetchProducts
     },
     dispatch
   );
