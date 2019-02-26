@@ -26,7 +26,7 @@ class StoreContainer extends Component {
     // props from action
     const { getProduct, fetchProducts } = this.props;
     await getProduct(category);
-    // await fetchProducts(category);
+    await fetchProducts(category);
   }
 
   async componentDidUpdate(prevProps) {

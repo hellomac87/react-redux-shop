@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import byProductId, * as fromProductId from "./byProductId_reducer";
-import createList, * as fromCreateList from "./createList";
+import byId, * as fromById from "./byId_reducer";
+import createList, * as fromList from "./createList";
 
 const listByCategory = combineReducers({
   all: createList("all"),
@@ -12,16 +12,16 @@ const listByCategory = combineReducers({
 });
 
 const products = combineReducers({
-  byProductId,
+  byId,
   listByCategory
 });
 
 export default products;
 
 export const getProducts = (state, category) => {
-  const ids = fromCreateList.getIds(state.listByCategory[category]);
-  return ids.map(id => fromProductId.getProduct(state.byProductId, id));
+  const ids = fromList.getIds(state.listByCategory[category]);
+  return ids.map(id => fromById.getProduct(state.byId, id));
 };
 
 // export const getIsFetching = (state, category) =>
-//   fromCreateList.getIsFetching(state.listByCategory[category]);
+//   fromList.getIsFetching(state.listByCategory[category]);

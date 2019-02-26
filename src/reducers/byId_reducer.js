@@ -1,11 +1,11 @@
 import produce from "immer";
 
-const byProductId = (state = {}, action) =>
+const byId = (state = {}, action) =>
   produce(state, draft => {
     switch (action.type) {
       case "FETCH_PRODUCTS_SUCCESS":
-        action.response.forEach(product => {
-          draft[product.id] = product;
+        action.response.forEach(item => {
+          draft[item.id] = item;
         });
         break;
       default:
@@ -13,7 +13,7 @@ const byProductId = (state = {}, action) =>
     }
   });
 
-export default byProductId;
+export default byId;
 
 // selector
 export const getProduct = (state, id) => state[id];

@@ -32,19 +32,19 @@ const createList = category => {
     }
   };
 
-  const totalCount = (state = 0, action) => {
-    switch (action.type) {
-      case "FETCH_PRODUCTS_SUCCESS":
-        return action.totalCount;
-      default:
-        return state;
-    }
-  };
+  // const totalCount = (state = 0, action) => {
+  //   switch (action.type) {
+  //     case "FETCH_PRODUCTS_SUCCESS":
+  //       return action.totalCount;
+  //     default:
+  //       return state;
+  //   }
+  // };
 
   return combineReducers({
     ids,
-    // isFetching,
-    totalCount
+    isFetching
+    // totalCount
   });
 };
 
