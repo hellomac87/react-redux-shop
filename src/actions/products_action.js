@@ -22,7 +22,8 @@ export const fetchProducts = (category, page, limit) => async dispatch => {
     console.log(response);
 
     // 2. (성공시)dispatch setProduct action
-    dispatch(fetchProductsSuccess(response, category));
+
+    dispatch(fetchProductsSuccess(response, category || "all"));
   } catch (e) {
     // Error
     // 2. (실패시)dispatch setProduct action

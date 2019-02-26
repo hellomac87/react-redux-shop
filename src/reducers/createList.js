@@ -5,7 +5,7 @@ import { combineReducers } from "redux";
 const createList = category => {
   // ids reducer, 얘는 리듀서에요.
   const ids = (state = [], action) => {
-    if (action.category !== category) {
+    if (category !== action.category) {
       return state;
     }
     switch (action.type) {
