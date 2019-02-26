@@ -9,7 +9,6 @@ import { connect } from "react-redux";
 import { getProduct } from "../actions/product_action";
 import { fetchProducts } from "../actions/products_action";
 // reducer
-// import { getProducts } from "../reducers";
 import { getProducts, getIsFetching } from "../reducers/products_reducer";
 
 import ProductListView from "../components/ProductListView";
@@ -62,10 +61,10 @@ class StoreContainer extends Component {
 }
 
 const mapStateToProps = (state, { match }) => {
-  // const {
-  //   params: { fromRouterCategory }
-  // } = match;
-  // const category = fromRouterCategory || "all";
+  const {
+    params: { category = category || "all" }
+  } = match;
+
   return {
     product: state.product,
     loading: state.loading
