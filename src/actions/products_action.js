@@ -5,11 +5,12 @@ export const fetchProducts = (category, page, limit) => async dispatch => {
   try {
     // Start. 글로벌 로딩 인디케이터 시작
     // disaptch(loadingStart());
+    // dispatch(fetchProductsRequest(category));
 
     // 1. call api
     // 1-1. params options
     const params = {
-      category: category || null,
+      category,
       _page: page || 1,
       _limit: limit || null
     };
@@ -46,5 +47,12 @@ const fetchProductsFailure = e => {
   return {
     type: "FETCH_PRODUCTS_FAILURE",
     message: e.message || "fetchProductsFailure"
+  };
+};
+
+const fetchProductsRequest = category => {
+  return {
+    type: "FETCH_PRODUCTS_REQUEST",
+    category
   };
 };

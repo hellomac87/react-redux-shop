@@ -17,6 +17,21 @@ const createList = category => {
     }
   };
 
+  const isFetching = (state = false, action) => {
+    if (category !== action.category) {
+      return state;
+    }
+    switch (action.type) {
+      case "FETCH_PRODUCTS_REQUEST":
+        return true;
+      case "FETCH_PRODUCTS_SUCCESS":
+      case "FETCH_PRODUCTS_FAILURE":
+        return false;
+      default:
+        return state;
+    }
+  };
+
   const totalCount = (state = 0, action) => {
     switch (action.type) {
       case "FETCH_PRODUCTS_SUCCESS":
@@ -28,6 +43,7 @@ const createList = category => {
 
   return combineReducers({
     ids,
+    // isFetching,
     totalCount
   });
 };
@@ -38,3 +54,4 @@ export default createList;
 // selectors
 export const getIds = state => state.ids;
 export const getTotalCount = state => state.totalCount;
+// export const getIsFetching = state => state.isFetching;

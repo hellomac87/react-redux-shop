@@ -17,3 +17,11 @@ const products = combineReducers({
 });
 
 export default products;
+
+export const getProducts = (state, category) => {
+  const ids = fromCreateList.getIds(state.listByCategory[category]);
+  return ids.map(id => fromProductId.getProduct(state.byProductId, id));
+};
+
+// export const getIsFetching = (state, category) =>
+//   fromCreateList.getIsFetching(state.listByCategory[category]);

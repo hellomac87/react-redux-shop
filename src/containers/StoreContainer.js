@@ -8,6 +8,9 @@ import { connect } from "react-redux";
 // action
 import { getProduct } from "../actions/product_action";
 import { fetchProducts } from "../actions/products_action";
+// reducer
+// import { getProducts } from "../reducers";
+import { getProducts, getIsFetching } from "../reducers/products_reducer";
 
 import ProductListView from "../components/ProductListView";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -54,13 +57,20 @@ class StoreContainer extends Component {
       return <LoadingSpinner />;
     }
     return <ProductListView product={product} />;
+    // return <ProductListView products={this.props.products} />;
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, { match }) => {
+  // const {
+  //   params: { fromRouterCategory }
+  // } = match;
+  // const category = fromRouterCategory || "all";
   return {
     product: state.product,
     loading: state.loading
+    // products: getProducts(state, category)
+    // isFetching: getIsFetching(state, category)
   };
 };
 
