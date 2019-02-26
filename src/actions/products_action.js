@@ -1,5 +1,6 @@
 // thunk
 const fetchProducts = (category, page, limit) => async dispatch => {
+  // TODO: fetching 여부 판단. 로직 작성
   try {
     // Start. 글로벌 로딩 인디케이터 시작
     // disaptch(loadingStart());
