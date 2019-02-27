@@ -6,7 +6,6 @@ import { bindActionCreators } from "redux";
 // react-redux
 import { connect } from "react-redux";
 // action
-import { getProduct } from "../actions/product_action";
 import { fetchProducts } from "../actions/products_action";
 // reducer
 import { getProducts, getIsFetching } from "../reducers/products_reducer";
@@ -23,40 +22,18 @@ class StoreContainer extends Component {
       }
     } = this.props;
     // props from action
-    const { getProduct, fetchProducts } = this.props;
-    await getProduct(category);
+    const { fetchProducts } = this.props;
     await fetchProducts(category);
   }
 
-  async componentDidUpdate(prevProps) {
-    // props from router
-    const {
-      match: {
-        params: { category: prevCategory }
-      }
-    } = prevProps;
-    // props from router
-    const {
-      match: {
-        params: { category }
-      }
-    } = this.props;
-    // props from action
-    const { getProduct, fetchProducts } = this.props;
-
-    if (category !== prevCategory) {
-      await getProduct(category);
-      // await fetchProducts(category);
-    }
-  }
+  async componentDidUpdate(prevProps) {}
 
   render() {
-    const { product, loading } = this.props;
+    const { loading } = this.props;
     if (loading) {
       return <LoadingSpinner />;
     }
-    return <ProductListView product={product} />;
-    // return <ProductListView products={this.props.products} />;
+    return <ProductListView />;
   }
 }
 
@@ -66,17 +43,14 @@ const mapStateToProps = (state, { match }) => {
   } = match;
 
   return {
-    product: state.product,
     loading: state.loading
     // products: getProducts(state, category)
-    // isFetching: getIsFetching(state, category)
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      getProduct,
       fetchProducts
     },
     dispatch
