@@ -17,34 +17,8 @@ const createList = category => {
     }
   };
 
-  const isFetching = (state = false, action) => {
-    if (category !== action.category) {
-      return state;
-    }
-    switch (action.type) {
-      case "FETCH_PRODUCTS_REQUEST":
-        return true;
-      case "FETCH_PRODUCTS_SUCCESS":
-      case "FETCH_PRODUCTS_FAILURE":
-        return false;
-      default:
-        return state;
-    }
-  };
-
-  // const totalCount = (state = 0, action) => {
-  //   switch (action.type) {
-  //     case "FETCH_PRODUCTS_SUCCESS":
-  //       return action.totalCount;
-  //     default:
-  //       return state;
-  //   }
-  // };
-
   return combineReducers({
-    ids,
-    isFetching
-    // totalCount
+    ids
   });
 };
 
