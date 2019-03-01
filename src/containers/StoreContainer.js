@@ -22,6 +22,7 @@ class StoreContainer extends Component {
         params: { category }
       }
     } = this.props;
+    console.log(this.props);
     // props from action
     const { getProduct, fetchProducts } = this.props;
     await getProduct(category);
