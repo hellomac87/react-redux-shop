@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 // action
 import { fetchProducts } from "../actions/products_action";
 // reducer
-import { getProducts, getIsFetching } from "../reducers/products_reducer";
+import { getProducts } from "../reducers/products_reducer";
 
 import ProductListView from "../components/ProductListView";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -21,20 +21,34 @@ class StoreContainer extends Component {
         params: { category }
       }
     } = this.props;
-    console.log(this.props);
+
     // props from action
     const { fetchProducts } = this.props;
     await fetchProducts(category);
   }
 
-  async componentDidUpdate(prevProps) {}
+  /*
+  async componentDidUpdate(prevProps) {
+    // props from router
+    const {
+      match: {
+        params: { category }
+      }
+    } = this.props;
+    const { fetchProducts } = this.props;
+    if (category !== prevProps.match.params.category) {
+      await fetchProducts(category);
+    }
+  }
+  */
 
   render() {
-    const { loading } = this.props;
+    const { loading, products } = this.props;
+
     if (loading) {
       return <LoadingSpinner />;
     }
-    return <ProductListView />;
+    return <ProductListView products={products} />;
   }
 }
 
@@ -44,8 +58,8 @@ const mapStateToProps = (state, { match }) => {
   } = match;
 
   return {
-    loading: state.loading
-    // products: getProducts(state, category)
+    loading: state.loading,
+    products: getProducts(state, category)
   };
 };
 

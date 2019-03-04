@@ -19,7 +19,6 @@ export const fetchProducts = (category, page, limit) => async dispatch => {
     // 1-3. response data에서 필요한 데이터 추출하기
     const response = res.data;
     // const totalCount = res.headers["x-total-count"];
-    console.log(response);
 
     // 2. (성공시)dispatch setProduct action
 

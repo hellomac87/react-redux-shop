@@ -1,12 +1,12 @@
 import React from "react";
 import { Container, Item } from "semantic-ui-react";
 
-const ProductListView = ({ product }) => {
+const ProductListView = ({ products }) => {
   return (
     <Container>
       <Item.Group>
-        {product &&
-          product.map((item, index) => (
+        {products &&
+          products.map((item, index) => (
             <Item key={item.id}>
               <Item.Image size="tiny" src={item.mainImgUrl} />
 

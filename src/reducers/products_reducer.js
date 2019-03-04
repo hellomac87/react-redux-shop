@@ -25,11 +25,7 @@ export const getProducts = (state, category) => {
 
   // 1. products.listByCategory[category] 를 우선 가져와, 얘는 객체 형태겟지
   // 1-1. 객체에서 ids를 가져와, 최초에는 빈 배열이 들어있을거야
-  const ids = fromList.getIds(state.listByCategory[category]);
+  const ids = fromList.getIds(state.products.listByCategory[category]);
 
-  //
-  return ids.map(id => fromById.getProduct(state.byId, id));
+  return ids.map(id => fromById.getProduct(state.products.byId, id));
 };
-
-// export const getIsFetching = (state, category) =>
-//   fromList.getIsFetching(state.listByCategory[category]);
